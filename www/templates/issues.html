@@ -1,0 +1,13 @@
+<ion-view view-title="Issues">
+  <ion-content>
+    <ion-list>
+    	<div class="list padding">
+		    <input class="item card padding" type="text" placeholder="Filter" ng-model="fil">
+		  </div>
+    	<ion-item class="card" ng-repeat="issue in issues | filter:fil" href="#/app/issue/{{issue.id}}">
+        {{issue.subject || "没有数据哦，快去添加一条吧~~"}}({{issue.id || "0"}})
+    	</ion-item>
+      </a>
+    </ion-list>
+  </ion-content>
+</ion-view>

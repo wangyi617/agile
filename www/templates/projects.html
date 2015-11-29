@@ -1,0 +1,22 @@
+<ion-view view-title="Projects">
+  <ion-content>
+    <ion-refresher on-refresh="doRefresh()"
+                   pulling-text="Pull to refresh..."
+                   refreshing-text="Refreshing!"
+                   refreshing-icon="ion-loading-b">
+    </ion-refresher>
+    <h3 class="padding-8px">Projects</h3>
+    <ion-list>
+      <ion-item ng-repeat="project in projects" ng-click="alert('haha')"><!-- href="#/app/projects/{{project.id}}" -->
+        {{project.name}}({{project.id}})
+      </ion-item>
+    </ion-list>
+    <h3 class="padding-8px">进行中</h3>
+    <ion-list>
+      <ion-item ng-repeat="userstory in userstoriesInProgress" href="#/app/userstories/{{userstory.id}}">{{userstory.subject}}({{userstory.id}})
+      </ion-item>
+      <ion-item ng-repeat="issue in issuesInProgress" href="#/app/issue/{{issue.id}}">{{issue.subject}}({{issue.id}})
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-view>

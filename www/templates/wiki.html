@@ -1,0 +1,46 @@
+<style>
+	#editor{
+		color: green;
+	}
+	#editions{
+		font-weight: bold;
+	}
+</style>
+
+<ion-view view-title="{{wiki.slug}}">
+  <ion-content class="padding">
+  	<div class="list card">
+        <div class="item item-avatar">
+          	<img src="{{user_avatar}}">
+          	<h2><span id="editor" ng-bind="editor"></span> 最后编辑</h2>
+          	<p ng-bind="wiki.modified_date"></p>
+          	<p><span id="editions" ng-bind="wiki.editions"></span>次编辑</p>
+        </div>
+    </div>
+    <div data-ng-bind-html="wiki.html"></div>
+    <div ng-include="addWikiContent"></div>
+  </ion-content>
+</ion-view>
+
+<script type="text/ng-template" id="addWikiContent.html">
+	  <div class="padding">
+    	<button class="button button-positive button-block" ng-click="modal.show()">Add Wiki Content</button>
+    </div>
+</script>
+
+<script id="modal.html" type="text/ng-template">
+      <ion-modal-view>
+        <ion-header-bar class="bar bar-header bar-positive">
+          <h1 class="title">Wiki Content</h1>
+          <button class="button button-clear button-primary" ng-click="modal.hide()">Cancel</button>
+        </ion-header-bar>
+        <ion-content class="padding">
+          <div class="list">
+            <label class="item item-input">
+              <textarea ng-model="wiki.html" style="background-color:#eee;min-height:240px;"></textarea>
+            </label>
+            <button class="button button-full button-positive" ng-click="addContent()">OK</button>
+          </div>
+        </ion-content>
+      </ion-modal-view>
+</script>

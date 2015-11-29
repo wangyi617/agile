@@ -1,0 +1,16 @@
+<ion-view view-title="Wikis">
+  <ion-content>
+    <ion-list>
+      <ion-item class="item-icon-right" ng-repeat="wiki in wikis" href="#/app/wiki/{{wiki.project}}/{{wiki.href}}" on-hold="delete(wiki.id)">
+        {{wiki.title}}({{wiki.id}})
+      </ion-item>
+    </ion-list>
+    <div class="padding">
+    	<button class="button button-positive button-block" ng-click="add()">Add Wiki</button>
+    </div>
+  </ion-content>
+</ion-view>
+
+<script id="popup-template.html" type="text/ng-template">
+    <input ng-model="data.wikiname" type="text" />
+</script>

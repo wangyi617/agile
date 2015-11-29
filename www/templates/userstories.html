@@ -1,0 +1,89 @@
+<ion-view view-title="Userstories<span class='badge badge-balanced'>{{userstories.length}}</span>">
+  <!-- <ion-header-bar class="bar bar-subheader bar-positive"> -->
+    <!-- <div class="button-bar"> -->
+      <!-- <button class="button ink" ng-repeat="status in userstoryStatuses" style="background-color: {{status.color}}" ng-click="byStatus({{status.project}},{{status.id}})">
+        {{status.name}}
+      </button> -->
+
+    <!-- </div> -->
+  <!-- </ion-header-bar> -->
+  <ion-content>
+    <div class="row">
+      <select class="col-75" ng-model="statusId" ng-change="byStatus(statusId)">
+        <option value="" selected="">全部</option>
+        <option ng-repeat="status in userstoryStatuses" value="{{status.id}}" style="color: {{status.color}}">{{status.name}}</option>
+      </select>
+      <button class="col-25 button button-calm nopadding" ng-click="openModalNewUserstory()">新建</button>
+    </div>
+    <div class="list">
+      <a class="item item-avatar" ng-repeat="userstory in userstories | orderBy:'-modified_date'" href="#/app/userstories/{{userstory.id}}">
+        <img ng-src="{{userstory.assigned_to_extra_info.photo | photoFilter}}">
+        <p style="color: {{userstory.status_extra_info.color}}">
+          {{userstory.assigned_to_extra_info.full_name_display | isAssignedFilter}}
+        </p>
+        <p style="color: {{userstory.status_extra_info.color}}">
+          {{userstory.subject}}(id:{{userstory.id}})
+        </p>
+        <p style="color: {{userstory.status_extra_info.color}}">
+          更新时间 {{userstory.modified_date}}
+        </p>
+      </a>
+    </div>
+  </ion-content>
+</ion-view>
+
+<script id="my-modal-newUserstory.html" type="text/ng-template">
+  <ion-modal-view>
+    <ion-header-bar class="bar bar-assertive-900">
+      <h1 class="title">New Userstory</h1>
+    </ion-header-bar>
+    <ion-content class="padding">
+      <label class="item item-input item-floating-label">
+        <span class="input-label">标题</span>
+        <input type="text" placeholder="标题" ng-model="new.subject">
+      </label>
+      <br/>
+      <div><h3>Total Points: {{totalPoints}}</h3></div>
+      <button class="button button-stable noshadow border-1px margin-5px padding-8px" ng-repeat="role in project.roles" ng-if="role.computable" ng-click="selectRole(role.id,$event)">
+        {{role.name}} <span ng-bind="roleInfo['{{role.id}}']"></span>
+      </button>
+      <br/>
+      <br/>
+      <select class="row" ng-model="new.status">
+        <option value="">选择状态（默认为NEW）</option>
+        <option ng-repeat="status in project.us_statuses" value="{{status.id}}" style="color: {{status.color}}">{{status.name}}</option>
+      </select>
+      <br/>
+      <!-- <input type="text" placeholder="标注"> -->
+      <textarea rows="4" width="100%" placeholder="请加上一些描述文字以帮助其他人更易了解此任务" ng-model="new.description"></textarea>
+      <br/>
+      <div class="row">
+        <button class="col-33 button button-stable border-1px nopadding" ng-click="teamRequirementToggle()">
+          团队要求 <i class="ion-checkmark" ng-show="new.team_requirement"></i>
+        </button>
+        <button class="col-33 button button-stable border-1px nopadding" ng-click="clientRequirementToggle()">
+          客户要求 <i class="ion-checkmark" ng-show="new.client_requirement"></i>
+        </button>
+        <button class="col-33 button button-stable border-1px nopadding" ng-click="lockToggle()">
+          封锁 <i class="ion-checkmark" ng-show="new.is_blocked"></i>
+        </button>
+      </div>
+      <button class="button button-block button-balanced" ng-click="newUserstory()">创建</button>
+      <button class="button button-block button-dark"  ng-click="closeModalNewUserstory()">取消</button>
+    </ion-content>
+  </ion-modal-view>
+</script>
+
+<script id="my-popover-points.html" type="text/ng-template">
+  <ion-popover-view>
+    <ion-header-bar>
+      <h2 class="title">Points</h1>
+    </ion-header-bar>
+    <ion-content>
+      <br/>
+      <div class="point">
+        <button class="col-33 button button-dark" ng-repeat="point in project.points" ng-click="selectPoints(point.id, point.value)">{{point.name}}</button>
+      </div>
+    </ion-content>
+  </ion-popover-view>
+</script>

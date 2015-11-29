@@ -1,0 +1,108 @@
+<ion-view view-title="{{issue.subject}}">
+  <ion-content>   
+    <h3 class="padding">#{{issue.ref}} <span ng-if="!isEditSubject">{{issue.subject}} </span>
+      <input type="text" ng-if="isEditSubject" class="editSubject" placeholder="新标题" ng-model="subject" ng-change="changeSubject(subject)">
+      <i class="ion-edit pull-right editIcon" ng-if="!isEditSubject" ng-click="editSubject()"></i>
+      <i class="ion-checkmark-round pull-right editIcon" ng-if="isEditSubject" ng-click="confirmSubject()"></i>
+      <i class="ion-close-round pull-right editIcon" ng-if="isEditSubject" ng-click="cancelSubject()"></i>
+    </h3>
+    <div class="item item-avatar">
+      <img src="{{issue.assigned_to_extra_info.photo | photoFilter}}">
+      <P>创建人：{{issue.owner_extra_info.full_name_display}} 指派给：{{issue.assigned_to_extra_info.full_name_display | isAssignedFilter}} <span><a ng-click="openPopoverAssigned($event)"><i class="ion-person balanced" style="padding: 6px 12px;"></i></a></span></P>
+      <p>创建时间：{{issue.created_date}}</p>
+      <P>修改时间：{{issue.modified_date}}</P>
+    </div>
+    <div class="list">
+      <div class="item row">
+        <button class="col-33 button button-stable" style="background-color: {{issue.status_extra_info.color}}; color: #fff;" ng-click="openPopoverChangeStatus($event)">
+          {{issue.status_extra_info.name}}
+        </button>
+        <button class="col-33 button button-calm" style="background-color: {{name.severityColor}}; color: #fff;" ng-click="openPopoverChangeSeverity($event)">
+          {{name.severity}}
+        </button>
+        <button class="col-33 button button-assertive" style="background-color: {{name.priorityColor}}; color: #fff;" ng-click="openPopoverChangePriority($event)">
+          {{name.priority}}
+        </button>
+      </div>
+      <div class="item row">
+        <button class="col-33 button button-positive" style="background-color: {{name.typeColor}}; color: #fff;" ng-click="openPopoverChangeType($event)">
+          {{name.type}}
+        </button>
+        <button class="col-33 button button-assertive" ng-click="delete()">
+          删除
+        </button>
+        <button class="col-33 button button-dark" ng-click="lockToggle()">
+          封锁 <i class="ion-checkmark" ng-show="issue.is_blocked"></i>
+        </button>
+      </div>
+    </div>
+    <div class="padding">
+      <i class="ion-edit pull-right editIcon" ng-if="!isEditDescription" ng-click="editDescription()"></i>
+      <i class="ion-checkmark-round pull-right editIcon" ng-if="isEditDescription" ng-click="confirmDescription()"></i>
+      <i class="ion-close-round pull-right editIcon" ng-if="isEditDescription" ng-click="cancelDescription()"></i>
+      <textarea rows="8" width="100%" placeholder="任务描述" ng-if="isEditDescription" ng-model="description" ng-change="changeDescription(description)"></textarea>
+    </div>
+    <div class="padding" ng-bind-html="issue.description_html" ng-if="!isEditDescription"></div>
+  </ion-content>
+</ion-view>
+
+<script id="my-popover-changeStatus.html" type="text/ng-template">
+  <ion-popover-view>
+    <ion-header-bar>
+      <h2 class="title">Change Status</h1>
+    </ion-header-bar>
+    <ion-content>
+      <div class="item" ng-repeat="status in statuses" style="color: {{status.color}}" ng-click="changeStatus({{status.id}})">{{status.name}}</div>
+    </ion-content>
+  </ion-popover-view>
+</script>
+
+<script id="my-popover-changeSeverity.html" type="text/ng-template">
+  <ion-popover-view>
+    <ion-header-bar>
+      <h2 class="title">Change Severity</h1>
+    </ion-header-bar>
+    <ion-content>
+      <div class="item" ng-repeat="severity in severities" style="color: {{severity.color}}" ng-click="changeSeverity({{severity.id}})">{{severity.name}}</div>
+    </ion-content>
+  </ion-popover-view>
+</script>
+
+<script id="my-popover-changePriority.html" type="text/ng-template">
+  <ion-popover-view>
+    <ion-header-bar>
+      <h2 class="title">Change Priority</h1>
+    </ion-header-bar>
+    <ion-content>
+      <div class="item" ng-repeat="priority in priorities" style="color: {{priority.color}}" ng-click="changePriority({{priority.id}})">{{priority.name}}</div>
+    </ion-content>
+  </ion-popover-view>
+</script>
+
+<script id="my-popover-changeType.html" type="text/ng-template">
+  <ion-popover-view>
+    <ion-header-bar>
+      <h2 class="title">Change Type</h1>
+    </ion-header-bar>
+    <ion-content>
+      <div class="item" ng-repeat="type in types" style="color: {{type.color}}" ng-click="changeType({{type.id}})">{{type.name}}</div>
+    </ion-content>
+  </ion-popover-view>
+</script>
+
+<script id="my-popover-assigned.html" type="text/ng-template">
+  <ion-popover-view>
+    <ion-header-bar>
+      <h2 class="title">Assigned To</h1>
+    </ion-header-bar>
+    <ion-content>
+      <div class="list">
+        <a class="item item-avatar item-icon-right" ng-repeat="member in project.members" ng-click=assigned({{member.id}})>
+          <img ng-src="{{member.photo | photoFilter}}">
+          <h2>{{member.full_name_display}}</h2>
+          <p><span class="ion-pricetag"></span>{{member.role_name}}</p>
+        </a>
+      </div>
+    </ion-content>
+  </ion-popover-view>
+</script>

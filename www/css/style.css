@@ -1,1 +1,164 @@
-/* Empty. Add your own CSS if you like */
+/* General
+==================================*/
+h1 {
+    color: #fff;
+    text-shadow: 0 1px 0px #000;
+    font-size: 42px;
+}
+
+
+/* Utilities
+==================================*/
+.title-bordered {
+    border-top: solid 2px #bbb;
+    padding-top: 30px;
+}
+
+p {
+    color: #555;
+    margin: 0 0 25px;
+}
+
+.scroll {
+    height: 100%;
+}
+
+
+/* Menu
+==================================*/
+.menu .bar.bar-header.expanded {
+    transition: all .5s ease-in-out;
+}
+
+.menu-open .bar.bar-header.expanded {
+    background-color: #222;
+}
+
+.menu h2 {
+    bottom: 0;
+    font-size: 18px;
+    left: 16px;
+    position: absolute;
+}
+
+.menu .avatar {
+    height: 88px;
+    width: 88px;
+}
+
+.menu.menu-left * {
+    font-weight: bold;
+}
+
+.menu-open .ion-navicon {
+    transform: rotate(-360deg);
+    -webkit-transition: all 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out;
+}
+
+.menu-open .ion-navicon:before {
+    content: "\f2ca";
+}
+
+
+/* Login
+==================================*/
+.app-icon {
+    background-color: #fff;
+    background: url('../img/crown.jpg') center;
+    background-size: cover;
+    border-radius: 50%;
+    height: 125px;
+    margin: 0 auto;
+    width: 125px;
+}
+
+.social-login {
+    position: fixed;
+    bottom: 0;
+}
+
+/* Userstories
+==================================*/
+.bar .button-bar > .button {
+    height: 44px;
+    line-height: 44px;
+    max-width: 17%;
+    padding: 0;
+    box-shadow: none;
+}
+
+.list {
+    margin: 10px 0;
+}
+
+/*头像缩略图居中*/
+.item-avatar > img:nth-child(1) {
+    left: 28px;
+    top: 24px;
+}
+
+.item .col-33 {
+    line-height: 38px;
+    text-align: center;
+    padding: 0;
+}
+
+.row .button {
+    box-shadow: none;
+}
+
+.point {
+    display: table;
+}
+
+.point button {
+    display: table-cell;
+    width: 33.33333%;
+    box-shadow: none;
+    border-radius: 0;
+    border: 1px solid rgb(255,255,255);
+    padding: 0;
+}
+
+.noshadow {
+    box-shadow: none;
+}
+
+.border-1px {
+    border: 1px solid #000;
+}
+
+.margin-5px {
+    margin: 5px;
+}
+
+.padding-8px {
+    padding: 0 8px;
+}
+
+.nopadding {
+    padding: 0;
+}
+
+textarea {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+}
+
+.editSubject {
+    display: inline!important;
+    border: 1px solid #000!important;
+    margin-left: 8px;
+    padding: 0 8px!important;
+    height: 32px!important;
+    width: 50%;
+}
+
+.editIcon {
+    padding: 8px 8px;
+    cursor: pointer;
+    font-size: 16px;
+    vertical-align: middle;
+}

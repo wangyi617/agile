@@ -1,0 +1,73 @@
+<ion-view view-title="Issue Filter">
+	<ion-content class="padding">
+		<div>
+			<div class="button-bar bar-calm">
+	          <a class="button" style="margin-right: 1px" href="#/app/issues?project={{project}}">All</a>
+	          <a class="button" ng-click="modal.show()">Add</a>
+	        </div>
+			<ion-list class="card" ng-repeat="name in filtersName">
+		        <ion-item class="item-icon-right" ng-click="showSubFilters($index)">
+		          <i class="icon ion-ios-arrow-down"></i>
+		          {{name}}
+		        </ion-item>
+		        <ion-list ng-if="subFilterStatus[$index]">
+		        	<hr />
+		        	<ion-item ng-repeat="sub in issueFilters[$index]" href="#/app/issues?project={{project}}&optionId={{sub.id || 'null'}}">
+		        		{{sub.name || sub.full_name || "Unassigned"}}
+		        		<span class="badge badge-assertive">{{sub.count}}</span>
+		        	</ion-item>
+		        </ion-list>
+	      	</ion-list>
+      	</div>
+	</ion-content>
+</ion-view>
+
+<script id="modal.html" type="text/ng-template">
+	<ion-modal-view>
+        <ion-header-bar class="bar bar-header bar-positive">
+          <h1 class="title">Add Issue</h1>
+          <!-- <button class="button button-clear button-primary" ng-click="modal.hide()">Cancel</button>-->
+          <a class="button button-icon button-clear icon ion-ios-close-outline" ng-click="modal.hide()"></a>
+        </ion-header-bar>
+        <ion-content class="padding">
+        	<ion-list class="card">
+        			<ion-item>
+		    	  		<input id="subjectId" type="text" placeholder="subject" />
+		    		</ion-item>
+        	</ion-list>
+		    <ion-list class="card">
+				  <label class="item item-input item-select">
+				    <div class="input-label">
+				      Type
+				    </div>
+				    <select ng-model="data.type">
+				      <option ng-repeat="optionItem in issueFilters[0]" value="{{optionItem.id}}">{{optionItem.name}}</option>
+				    </select>
+				  </label>
+				  <label class="item item-input item-select">
+				    <div class="input-label">
+				      Priority
+				    </div>
+				    <select ng-model="data.priority">
+				      <option ng-repeat="optionItem in issueFilters[2]" value="{{optionItem.id}}">{{optionItem.name}}</option>
+				    </select>
+				  </label>
+				  <label class="item item-input item-select">
+				    <div class="input-label">
+				      Severity
+				    </div>
+				    <select ng-model="data.severity">
+				      <option ng-repeat="optionItem in issueFilters[3]" value="{{optionItem.id}}">{{optionItem.name}}
+				      </option>
+				    </select>
+				  </label>
+			</ion-list>
+			<ion-list class="card">
+        			<ion-item>
+		    	  		<textarea style="min-height:80px" id="desId" placeholder="description"></textarea>
+		    		</ion-item>
+        	</ion-list>
+			<button type="submit" class="button button-positive button-block" ng-click="add(data)">Confirm</button>
+		</ion-content>
+    </ion-modal-view>
+</script>

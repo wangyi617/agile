@@ -1,0 +1,65 @@
+<ion-view view-title="Project">
+  <ion-content ng-class="{expanded:false}">
+
+
+    <div class="hero" style="height:200px!important;background-image: url('img/profile-bg.jpg');">
+      <div class="content">
+        <div class="avatar" style="background-image: url('img/daenerys.jpg');"></div>
+        <h3><a class="light">{{project.name}}</a></h3>
+        <h4>{{project.description}}</h4>
+      </div>
+    </div>
+
+
+<div class="list">
+<!--  <a class="item item-icon-left" href="#">
+    <i class="icon ion-person-stalker"></i>
+    Team
+    <span class="badge badge-stable">6</span>
+  </a>-->
+  <a class="item item-icon-left" href="#/agile/timeline/project/{{project.id}}">
+    <i class="icon ion-calendar"></i>
+    TimeLine
+    <!-- <span class="badge badge-stable">6</span> -->
+  </a>
+  <a class="item item-icon-left" href="#/agile/userstories?project={{project.id}}">
+    <i class="icon ion-filing"></i>
+    Story
+    <!-- <span class="badge badge-stable">6</span> -->
+  </a>
+
+  <!-- <a class="item item-icon-left" href="#/agile/issues?project={{project.id}}">
+    <i class="icon ion-bug"></i>
+    Issue
+    <span class="badge badge-stable">6</span>
+  </a> -->
+  <a class="item item-icon-left" href="#/agile/issuesFilter?project={{project.id}}">
+    <i class="icon ion-bug"></i>
+    Issue
+    <!-- <span class="badge badge-stable">6</span> -->
+  </a>
+
+  <a class="item item-icon-left" href="#/agile/wiki?project={{project.id}}">
+    <i class="icon ion-ios-list"></i>
+    Wiki
+    <!-- <span class="badge badge-stable">6</span> -->
+  </a>
+</div>
+
+
+    <h4 class="content padding double-padding-x">Team Members</h4>
+
+    <div class="list">
+      <ion-list>
+        <ion-item ng-repeat="member in project.members" href="#/agile/projects/{{project.id}}">
+          <a class="item item-avatar item-icon-right" href="#">
+            <img ng-src="{{member.photo | photoFilter}}">
+            <h2>{{member.full_name_display}}</h2>
+            <p><span class="ion-pricetag"></span>{{member.role_name}}</p>
+            <!-- <i class="icon ion-chatbubble muted"></i> -->
+          </a>
+        </ion-item>
+      </ion-list>
+    </div>
+  </ion-content>
+</ion-view>
