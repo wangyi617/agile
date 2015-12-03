@@ -2,7 +2,7 @@
 	<ion-content class="padding">
 		<div>
 			<div class="button-bar bar-calm">
-	          <a class="button" style="margin-right: 1px" href="#/app/issues?project={{project}}">All</a>
+	          <a class="button" style="margin-right: 1px" href="#/agile/issues?project={{project}}">All</a>
 	          <a class="button" ng-click="modal.show()">Add</a>
 	        </div>
 			<ion-list class="card" ng-repeat="name in filtersName">
@@ -12,7 +12,7 @@
 		        </ion-item>
 		        <ion-list ng-if="subFilterStatus[$index]">
 		        	<hr />
-		        	<ion-item ng-repeat="sub in issueFilters[$index]" href="#/app/issues?project={{project}}&optionId={{sub.id || 'null'}}">
+		        	<ion-item ng-repeat="sub in issueFilters[$index]" href="#/agile/issues?project={{project}}&optionId={{sub.id || 'null'}}">
 		        		{{sub.name || sub.full_name || "Unassigned"}}
 		        		<span class="badge badge-assertive">{{sub.count}}</span>
 		        	</ion-item>

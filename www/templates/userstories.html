@@ -16,7 +16,7 @@
       <button class="col-25 button button-calm nopadding" ng-click="openModalNewUserstory()">新建</button>
     </div>
     <div class="list">
-      <a class="item item-avatar" ng-repeat="userstory in userstories | orderBy:'-modified_date'" href="#/app/userstories/{{userstory.id}}">
+      <a class="item item-avatar" ng-repeat="userstory in userstories | orderBy:'-modified_date'" href="#/agile/userstories/{{userstory.id}}">
         <img ng-src="{{userstory.assigned_to_extra_info.photo | photoFilter}}">
         <p style="color: {{userstory.status_extra_info.color}}">
           {{userstory.assigned_to_extra_info.full_name_display | isAssignedFilter}}
