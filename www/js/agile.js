@@ -3,7 +3,7 @@
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
-var agile = angular.module('agile', ['ionic', 'restangular']);
+var agile = angular.module('agile', ['ionic', 'restangular', 'ionic-material']);
 
 agile.run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -76,7 +76,7 @@ agile.config(function($stateProvider, $urlRouterProvider) {
   .state('agile.userstories', {
     url: '/userstories?project=value',
     views: {
-      'menuContent': {
+      'agileContent': {
         templateUrl: 'templates/userstories.html',
         controller: 'UserstoriesCtrl'
       }
@@ -85,7 +85,7 @@ agile.config(function($stateProvider, $urlRouterProvider) {
   .state('agile.userstory', {
     url: '/userstories/:id',
     views: {
-      'menuContent': {
+      'agileContent': {
         templateUrl: 'templates/userstory.html',
         controller: 'UserstoryCtrl'
       }
@@ -94,7 +94,7 @@ agile.config(function($stateProvider, $urlRouterProvider) {
   .state('agile.issuesFilter', {
     url: '/issuesFilter?project=value',
     views: {
-      'menuContent': {
+      'agileContent': {
         templateUrl: 'templates/issues-filter.html',
         controller: 'IssuesFilterCtrl'
       }
@@ -103,7 +103,7 @@ agile.config(function($stateProvider, $urlRouterProvider) {
   .state('agile.issues', {
     url: '/issues?project=value&optionId=val',
     views: {
-      'menuContent': {
+      'agileContent': {
         templateUrl: 'templates/issues.html',
         controller: 'IssuesCtrl'
       }
@@ -112,7 +112,7 @@ agile.config(function($stateProvider, $urlRouterProvider) {
   .state('agile.issue', {
     url: '/issue/:id',
     views: {
-      'menuContent': {
+      'agileContent': {
         templateUrl: 'templates/issue.html',
         controller: 'IssueCtrl'
       }
@@ -121,7 +121,7 @@ agile.config(function($stateProvider, $urlRouterProvider) {
   .state('agile.wikis', {
     url: '/wiki?project=value',
     views: {
-      'menuContent': {
+      'agileContent': {
         templateUrl: 'templates/wikis.html',
         controller: 'WikisCtrl'
       }
@@ -130,7 +130,7 @@ agile.config(function($stateProvider, $urlRouterProvider) {
   .state('agile.wiki', {
     url: '/wiki/:project/:slug',
     views: {
-      'menuContent': {
+      'agileContent': {
         templateUrl: 'templates/wiki.html',
         controller: 'WikiCtrl'
       }
@@ -139,7 +139,7 @@ agile.config(function($stateProvider, $urlRouterProvider) {
   .state('agile.timelines', {
     url: '/timeline/project/:id',
     views: {
-      'menuContent': {
+      'agileContent': {
         templateUrl: 'templates/timelines.html',
         controller: 'TimelinesCtrl'
       }

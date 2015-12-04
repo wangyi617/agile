@@ -3,6 +3,7 @@
   "private": "true",
   "devDependencies": {
     "ionic": "driftyco/ionic-bower#1.1.1",
-    "restangular": "~1.5.1"
+    "restangular": "~1.5.1",
+    "robotodraft": "~1.1.0"
   }
 }
